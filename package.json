@@ -19,7 +19,11 @@
       "game-controllerizer": "game_controllerizer/gc.js"
     }
   },
-  "homepage": "https://github.com/GameControllerizer/node-red-contrib-game_controllerizer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GameControllerizer/node-red-contrib-game_controllerizer.git"
+  },  
+  "homepage": "https://github.com/GameControllerizer/GameControllerizer",
   "dependencies": {
     "node-red-node-serialport": "^0.6.7"
   }
