@@ -1,5 +1,5 @@
 # node-red-contrib-game_controllerizer
-> Node-RED nodes for [GameControllerizer](https://github.com/GameControllerizer/GameControllerizer).
+Node-RED nodes for [GameControllerizer](https://github.com/GameControllerizer/GameControllerizer).
 
 These nodes allow users to combine the processes of IoT devices, Web services, and applications of AI, and to convert them into game control operations to augment existing digital games.  
 See our [paper](https://arxiv.org/abs/1810.01070) for more details.
