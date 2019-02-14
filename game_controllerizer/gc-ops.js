@@ -74,11 +74,11 @@ var GcOps;
     function toBytesStickObject(id, v) {
         var bytes = [];
         if ("x" in v) {
-            var x_bytes = (new pxt_gc_1.gamecontrollerizer.StickCmd(id, pxt_gc_1.gamecontrollerizer.GamepadStickAxis.x, v["x"], 0)).toBytes();
+            var x_bytes = (new pxt_gc_1.gamecontrollerizer.StickAxisCmd(id, pxt_gc_1.gamecontrollerizer.GamepadStickAxis.x, v["x"], 0)).toBytes();
             bytes = bytes.concat(x_bytes);
         }
         if ("y" in v) {
-            var y_bytes = (new pxt_gc_1.gamecontrollerizer.StickCmd(id, pxt_gc_1.gamecontrollerizer.GamepadStickAxis.y, v["y"], 0)).toBytes();
+            var y_bytes = (new pxt_gc_1.gamecontrollerizer.StickAxisCmd(id, pxt_gc_1.gamecontrollerizer.GamepadStickAxis.y, v["y"], 0)).toBytes();
             bytes = bytes.concat(y_bytes);
         }
         return bytes;

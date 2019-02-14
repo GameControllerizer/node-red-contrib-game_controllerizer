@@ -71,7 +71,7 @@ module.exports = function(RED) {
 	function OperateStickNode(config) {
 		RED.nodes.createNode(this,config);
 		let stick = config.stick ? "stk1" : "stk0";
-		let pos = {"x":parseInt(config.posx), "y":parseInt(config.posy)};
+		let pos = [parseInt(config.posx), parseInt(config.posy)];
 		let dur = parseInt(config.mode);
 		this.cmd = {[stick]:pos, "dur":dur};
 		var node = this;

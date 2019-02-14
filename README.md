@@ -28,6 +28,9 @@ $ npm install node-red-contrib-game_controllerizer
 # then restart node-red
 ```
 
+## Cheat sheet 
+Import **[this json](https://raw.githubusercontent.com/wiki/GameControllerizer/node-red-contrib-game_controllerizer/docs/node-red-contrib-game_controllerizer-cheatsheet.json)** as a Node-RED flow.
+
 ## Usage examples
 
 ### Example 1 
