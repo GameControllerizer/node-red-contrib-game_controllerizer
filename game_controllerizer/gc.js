@@ -141,35 +141,5 @@ module.exports = function(RED) {
         });
     }
 	RED.nodes.registerType("binary-serializer-g", BinarySerializerNode);
-
-	////////////////////////////////////////////////////////////////////
-    // function RemapButtonNode(config) {
-    //     RED.nodes.createNode(this,config);
-    //     this.map = [
-    //         parseInt(config.remap0),
-    //         parseInt(config.remap1),
-    //         parseInt(config.remap2),
-    //         parseInt(config.remap3),
-    //         parseInt(config.remap4),
-    //         parseInt(config.remap5),
-    //         parseInt(config.remap6),
-    //         parseInt(config.remap7),
-    //         parseInt(config.remap8),
-    //         parseInt(config.remap9),
-    //         parseInt(config.remap10),
-    //         parseInt(config.remap11)
-    //     ];
-    //     var node = this;
-    //     node.on('input', function(msg) {
-    //         try {
-	// 			   // button remapping codes
-	//             // ...
-    //             node.send(msg);
-    //         } catch (e) {
-    //             node.error(e, msg);
-    //         }
-    //     });
-    // }
-	// RED.nodes.registerType("button-map", RemapButtonNode);	
 }
 
