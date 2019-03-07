@@ -497,7 +497,7 @@ var gamecontrollerizer;
         if (spos === void 0) { spos = newStickPosition(0, 0); }
         if (mode === void 0) { mode = InputMode.Hold; }
         var dur = mode;
-        var tCmd = new StickCmd(stick, spos.x, spos.y, 0);
+        var tCmd = new StickCmd(stick, spos.x, spos.y, dur);
         sendToGc(tCmd);
         return;
     }
