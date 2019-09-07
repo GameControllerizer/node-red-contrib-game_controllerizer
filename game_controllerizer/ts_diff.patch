@@ -1,0 +1,21 @@
+--- ../../pxt-gamecontrollerizer/main.ts	2019-09-07 17:34:55.852366076 +0900
++++ ./pxt-gc.ts	2019-09-07 18:02:27.145600308 +0900
+@@ -5,8 +5,18 @@
+  * https://makecode.microbit.org/blocks/custom
+  */
+ 
++import {PxtGcWrapper, PxtGcEnum} from "./pxt-gc_wrapper";
++
+ //% weight=100 color=#F1BC03 icon="\uf11b" block="GameControllerizer"
+-namespace gamecontrollerizer {
++export namespace gamecontrollerizer {
++
++    const wrapper_obj = new PxtGcWrapper();
++    const serial = wrapper_obj
++    const pins = wrapper_obj;
++    const control = wrapper_obj;
++    const BaudRate = PxtGcEnum;
++    const SerialPin = PxtGcEnum;
++    const Delimiters = PxtGcEnum;
+ 
+     const EXTERNAL_BUTTON_EVENT_ID: number = 12345;

@@ -1,0 +1,12 @@
+import {PxtGcWrapper, PxtGcEnum} from "./pxt-gc_wrapper";
+
+//% weight=100 color=#F1BC03 icon="\uf11b" block="GameControllerizer"
+export namespace gamecontrollerizer {
+
+    const wrapper_obj = new PxtGcWrapper();
+    const serial = wrapper_obj
+    const pins = wrapper_obj;
+    const control = wrapper_obj;
+    const BaudRate = PxtGcEnum;
+    const SerialPin = PxtGcEnum;
+    const Delimiters = PxtGcEnum;

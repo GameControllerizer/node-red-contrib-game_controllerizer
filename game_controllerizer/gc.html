@@ -302,6 +302,33 @@
 
 <!-- ----------------------------------------------------------------------------------- -->
 <script type="text/javascript">
+    RED.nodes.registerType('interrupt',{
+        category: 'Game_control',
+        color: '#F1BC03',
+        defaults: {
+			name: {value:""},
+		},
+        inputs:1,
+        outputs:1,
+        icon: "inject.png",
+        label: function() {
+            return this.name||"Interrupt";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="interrupt">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+	</div>
+	<div class="form-tips">
+        <b>Tip:</b> Interrupt command inputs.
+	</div>
+</script>
+
+<!-- ----------------------------------------------------------------------------------- -->
+<script type="text/javascript">
     RED.nodes.registerType('wait',{
         category: 'Game_control',
         color: '#F1BC03',
@@ -331,12 +358,9 @@
         <b>Tip:</b> Wait N-frames (1 frame = 1/60 sec). Duration range = [1:127].
 	</div>
 </script>
-<!-- <script type="text/x-red" data-help-name="dpad">
-    <p>DPAD control.</p>
-</script> -->
+
 
 <!-- ----------------------------------------------------------------------------------- -->
-
 <script type="text/javascript">
     RED.nodes.registerType('binary-serializer-g',{
         category: 'Game_control',
