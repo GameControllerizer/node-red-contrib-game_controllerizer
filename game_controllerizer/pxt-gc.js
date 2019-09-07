@@ -6,12 +6,9 @@
  * https://makecode.microbit.org/blocks/custom
  */
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -27,8 +24,9 @@ var gamecontrollerizer;
     var serial = wrapper_obj;
     var pins = wrapper_obj;
     var control = wrapper_obj;
-    var BaudRate = pxt_gc_wrapper_1.PxtGcBaudRate;
-    var SerialPin = pxt_gc_wrapper_1.PxtGcSerialPin;
+    var BaudRate = pxt_gc_wrapper_1.PxtGcEnum;
+    var SerialPin = pxt_gc_wrapper_1.PxtGcEnum;
+    var Delimiters = pxt_gc_wrapper_1.PxtGcEnum;
     var EXTERNAL_BUTTON_EVENT_ID = 12345;
     //////////////////////////////////////////////////////////////////////////////////////////
     // Types
@@ -123,13 +121,13 @@ var gamecontrollerizer;
     var ExButton;
     (function (ExButton) {
         //% block="B0"
-        ExButton[ExButton["EB0"] = 240] = "EB0";
+        ExButton[ExButton["EB0"] = 1] = "EB0";
         //% block="B1"
-        ExButton[ExButton["EB1"] = 241] = "EB1";
+        ExButton[ExButton["EB1"] = 2] = "EB1";
         //% block="B2"
-        ExButton[ExButton["EB2"] = 242] = "EB2";
+        ExButton[ExButton["EB2"] = 4] = "EB2";
         //% block="B3"
-        ExButton[ExButton["EB3"] = 243] = "EB3";
+        ExButton[ExButton["EB3"] = 8] = "EB3";
     })(ExButton = gamecontrollerizer.ExButton || (gamecontrollerizer.ExButton = {}));
     var InputConfigTarget;
     (function (InputConfigTarget) {
@@ -316,6 +314,23 @@ var gamecontrollerizer;
     }());
     gamecontrollerizer.StickPosition = StickPosition;
     /**
+     * Cmd:0xCD
+     */
+    var InterruptCmd = /** @class */ (function (_super) {
+        __extends(InterruptCmd, _super);
+        /**
+         */
+        function InterruptCmd() {
+            var _this = _super.call(this) || this;
+            var tBuf = [0, 0, 0, 0];
+            tBuf[0] = 0xCD;
+            _this.bytes = tBuf;
+            return _this;
+        }
+        return InterruptCmd;
+    }(Cmd));
+    gamecontrollerizer.InterruptCmd = InterruptCmd;
+    /**
      * Cmd:0xCE
      */
     var InputConfigCmd = /** @class */ (function (_super) {
@@ -378,8 +393,8 @@ var gamecontrollerizer;
                 break;
         }
         // event setting
-        serial.onDataReceived('\n', function () {
-            var tMsgId = 0xF0 | (serial.readBuffer(2)[0]);
+        serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+            var tMsgId = serial.readBuffer(2)[0];
             control.raiseEvent(EXTERNAL_BUTTON_EVENT_ID, tMsgId);
         });
     }
@@ -517,6 +532,15 @@ var gamecontrollerizer;
         return new StickPosition(x, y);
     }
     gamecontrollerizer.newStickPosition = newStickPosition;
+    //% blockId="operateInterrupt"
+    //% block="[G.C.] Interrupt command inputs"
+    //% advanced=true
+    function operateInterrupt() {
+        var tCmd = new InterruptCmd();
+        sendToGc(tCmd);
+        return;
+    }
+    gamecontrollerizer.operateInterrupt = operateInterrupt;
     //% blockId="operateInputConfig"
     //% block="[G.C.] Config %ctarget |L-R input to %cmap |mode"
     //% advanced=true

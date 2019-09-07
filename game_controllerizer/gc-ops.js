@@ -99,6 +99,10 @@ var GcOps;
         }
         return bytes;
     }
+    function toBytesInterrupt() {
+        var bytes = (new pxt_gc_1.gamecontrollerizer.InterruptCmd()).toBytes();
+        return bytes;
+    }
     function toBytes(obj) {
         try {
             // console.log("toBytes : " + JSON.stringify(obj));
@@ -121,6 +125,9 @@ var GcOps;
                         break;
                     case "cfg_input":
                         bytes = toBytesInputConfig(obj["cfg_input"]);
+                        break;
+                    case "interrupt":
+                        bytes = toBytesInterrupt();
                         break;
                 }
                 sub_sentence = sub_sentence.concat(bytes);

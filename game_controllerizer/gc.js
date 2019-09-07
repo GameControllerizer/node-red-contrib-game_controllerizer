@@ -87,6 +87,22 @@ module.exports = function(RED) {
 	RED.nodes.registerType("stick", OperateStickNode);
 
 	////////////////////////////////////////////////////////////////////
+	function OperateInterruptNode(config) {
+		RED.nodes.createNode(this,config);
+		this.cmd = {"interrupt": 0};
+		var node = this;
+		node.on('input', function(msg) {
+			try {
+				msg.payload = GcOps.concat(msg.payload, this.cmd);
+				node.send(msg);
+			} catch (e) {
+				node.error(e, msg);
+			}
+		});
+	}
+	RED.nodes.registerType("interrupt", OperateInterruptNode);
+
+	////////////////////////////////////////////////////////////////////
 	function OperateInputConfigNode(config) {
 		RED.nodes.createNode(this,config);
 		this.cmd = {"cfg_input": {[config.ctarget]: parseInt(config.cmap)}, "dur":0};
