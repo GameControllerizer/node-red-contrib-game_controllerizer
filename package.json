@@ -22,9 +22,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GameControllerizer/node-red-contrib-game_controllerizer.git"
-  },  
+  },
   "homepage": "https://github.com/GameControllerizer/GameControllerizer",
   "dependencies": {
-    "node-red-node-serialport": "latest"
+    "node-red-node-serialport": "^0.10.0"
   }
 }
