@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-game_controllerizer",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Node-RED nodes for GameControllerizer",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,6 @@
   },  
   "homepage": "https://github.com/GameControllerizer/GameControllerizer",
   "dependencies": {
-    "node-red-node-serialport": "^0.6.7"
+    "node-red-node-serialport": "latest"
   }
 }
