@@ -156,6 +156,6 @@ module.exports = function(RED) {
             }
         });
     }
-	RED.nodes.registerType("binary-serializer-g", BinarySerializerNode);
+	RED.nodes.registerType("binary-serializer", BinarySerializerNode);
 }
 
