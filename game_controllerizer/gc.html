@@ -18,14 +18,14 @@
         outputs:1,
         icon: "inject.png",
         label: function() {
-            return this.name||"Gamepad control";
+            return this.name||"[gamepad]";
         }
     });
 </script>
 
 <script type="text/x-red" data-template-name="gamepad">
     <div class="form-row">
-        <label for="node-input-dpad"><i class="fa fa-arrows"></i> DPAD</label>
+        <label for="node-input-dpad"><i class="fa fa-arrows"></i> Dpad</label>
         <select id="node-input-dpad">
             <option value=1>⬋ LeftBottom</option>
             <option value=2>⬇ Bottom</option>
@@ -78,8 +78,7 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>        
     <div class="form-tips">
-		<b>Tip:</b> Gamepad control.  
-		Stick X/Y range = [-127:127].
+		<b>Tip:</b> Gamepad control. Stick X/Y range = [-127:127].
     </div>
 </script>
 
@@ -102,7 +101,7 @@
         outputs:1,
         icon: "inject.png",
         label: function() {
-            return this.name||"Button control";
+            return this.name||"[button] btn-" + this.button;
         }
     });
 </script>
@@ -138,7 +137,7 @@
         <input type="text" id="node-input-name" placeholder="Name">
 	</div>
 	<div class="form-tips">
-        <b>Tip:</b> Individual Button control
+        <b>Tip:</b> Individual Button control.
 	</div>
 </script>
 <script type="text/x-red" data-help-name="button">
@@ -159,14 +158,16 @@
         outputs:1,
         icon: "inject.png",
         label: function() {
-            return this.name||"DPAD control";
+            var id2arrow = ["", "⬋", "⬇", "⬊", "⬅", "●", "➡", "⬉", "⬆", "⬈"]
+            var direction = id2arrow[this.dpad]
+            return this.name||"[dpad] " + direction
         }
     });
 </script>
 
 <script type="text/x-red" data-template-name="dpad">
     <div class="form-row">
-        <label for="node-input-dpad"><i class="fa fa-arrows"></i> DPAD</label>
+        <label for="node-input-dpad"><i class="fa fa-arrows"></i> Dpad</label>
         <select id="node-input-dpad">
             <option value=1>⬋ LeftBottom</option>
             <option value=2>⬇ Bottom</option>
@@ -191,12 +192,12 @@
         <input type="text" id="node-input-name" placeholder="Name">
 	</div>
 	<!-- <div class="form-tips">
-        <b>Tip:</b> DPAD control
+        <b>Tip:</b> Dpad control
 	</div> -->
 </script>
-<!-- <script type="text/x-red" data-help-name="dpad">
-    <p>DPAD control.</p>
-</script> -->
+<script type="text/x-red" data-help-name="dpad">
+    <p>Dpad control.</p>
+</script>
 
 <!-- ----------------------------------------------------------------------------------- -->
 <script type="text/javascript">
@@ -214,7 +215,7 @@
         outputs:1,
         icon: "inject.png",
         label: function() {
-            return this.name||"Stick control";
+            return this.name||"[stk" + this.stick + "] " + this.posx + "/" + this.posy
         }
     });
 </script>
@@ -247,9 +248,9 @@
         <b>Tip:</b> Stick control
 	</div> -->
 </script>
-<!-- <script type="text/x-red" data-help-name="stick">
+<script type="text/x-red" data-help-name="stick">
     <p>Stick control.</p>
-</script> -->
+</script>
 
 <!-- ----------------------------------------------------------------------------------- -->
 <script type="text/javascript">
@@ -265,7 +266,7 @@
         outputs:1,
         icon: "inject.png",
         label: function() {
-            return this.name||"Input config";
+            return this.name||"[config] " + this.ctarget;
         }
     });
 </script>
@@ -274,7 +275,7 @@
     <div class="form-row">
         <label for="node-input-ctarget"><i class="fa fa-gamepad"></i> Target</label>
         <select id="node-input-ctarget">
-            <option value="dpad">DPAD</option>
+            <option value="dpad">Dpad</option>
             <option value="stk0">Stick (left)</option>
             <option value="stk1">Stick (right)</option>
         </select>
@@ -283,7 +284,7 @@
         <label for="node-input-cmap"><i class="fa fa-random"></i> Mapping</label>
         <select id="node-input-cmap">
             <option value=0>Normal</option>
-            <option value=1>Reverse</option>
+            <option value=1>Flip horizontal</option>
             <option value=2>The other</option>
         </select>
     </div>
@@ -312,7 +313,7 @@
         outputs:1,
         icon: "inject.png",
         label: function() {
-            return this.name||"Interrupt";
+            return this.name||"[interrupt]";
         }
     });
 </script>
@@ -323,8 +324,11 @@
         <input type="text" id="node-input-name" placeholder="Name">
 	</div>
 	<div class="form-tips">
-        <b>Tip:</b> Interrupt command inputs.
+        <b>Tip:</b> Interrupt H/W emulator excecution.
 	</div>
+</script>
+<script type="text/x-red" data-help-name="interrupt">
+    <p>Interrupt H/W emulator excecution.</p>
 </script>
 
 <!-- ----------------------------------------------------------------------------------- -->
@@ -340,7 +344,7 @@
         outputs:1,
         icon: "inject.png",
         label: function() {
-            return this.name||"Wait N-frame";
+            return this.name || "[wait] " + this.dur + " frame"
         }
     });
 </script>
@@ -358,11 +362,13 @@
         <b>Tip:</b> Wait N-frames (1 frame = 1/60 sec). Duration range = [1:127].
 	</div>
 </script>
-
+<script type="text/x-red" data-help-name="wait">
+    <p>Wait N-frames (1 frame = 1/60 sec).</p>
+</script>
 
 <!-- ----------------------------------------------------------------------------------- -->
 <script type="text/javascript">
-    RED.nodes.registerType('binary-serializer-g',{
+    RED.nodes.registerType('binary-serializer',{
         category: 'Game_control',
         color: '#F1BC03',
         defaults: {
@@ -372,21 +378,21 @@
         outputs:1,
         icon: "serial.png",
         label: function() {
-            return this.name||"Binary serializer (G)";
+            return this.name||"binary serializer";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="binary-serializer-g">
+<script type="text/x-red" data-template-name="binary-serializer">
 	<div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-tips">
-        <b>Tip:</b> Serialize DSL4GC(Gamepad) to byte[], then output via UART.<br>
+        <b>Tip:</b> Serialize DSL4GC(Gamepad) to byte[] for output via UART.<br>
     </div>        
 </script>
 
 <script type="text/x-red" data-help-name="binary-serializer">
-    <p>Serialize DSL4GC(Gamepad) to byte[], then output via UART.</p>
+    <p>Serialize DSL4GC(Gamepad) to byte[] for output via UART.</p>
 </script>
